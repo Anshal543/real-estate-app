@@ -7,7 +7,9 @@ import morgan from "morgan";
 import { authMiddleware } from "./middleware/authMiddleware";
 // Route imports
 import tenantRoutes from "./routes/tenantRoutes";
-import managerRoutes from "./routes//managerRoutes";
+import managerRoutes from "./routes/managerRoutes";
+import propertyRoutes from "./routes/propertyRoutes";
+
 
 
 
@@ -27,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 // Routes
+app.use("/properties", propertyRoutes);
 app.use("/tenants", authMiddleware(["tenant"]), tenantRoutes);
 app.use("/managers", authMiddleware(["manager"]), managerRoutes);
 
